@@ -1,0 +1,82 @@
+<div id="flex-single-view">
+  <div id="flex-container">
+    <!--Partner header  -->
+    <app-center-header *ngIf="headerObject" [data]="data[0]" [headerData]="headerObject"></app-center-header>
+    <!--Partner Details  -->
+    <div id="myDiv" class="flex-body">
+      <mat-card>
+        <mat-card-content class="forms-container">
+          <div [formGroup]="primaryForm" class="primary-form">
+            <span><strong>{{ 'center.language' | translate }}</strong></span>
+            <span *ngIf="!disableForms" matTooltip="{{'center.keyboard-tooltip' | translate}}" (click)="openKeyboard('primary')" style="float: right; color: grey; cursor: pointer;"><i class="material-icons">keyboard</i></span>
+            <hr />
+            <br /><br />
+            <h3>{{ 'center.center-details' | translate }}</h3>
+
+            <mat-form-field>
+              <input #keyboardRef #name (focus)="scrollPage(name, 'primary', 'name', 0)" formControlName="name" matInput placeholder="{{ 'center.registration-center-name' | translate }}">
+              <mat-error *ngIf="primary.name.touched && primary.name.hasError('required')">
+                {{ 'center.validationMessages.name.required' | translate }}
+              </mat-error>
+              <mat-error *ngIf="primary.name.touched && primary.name.hasError('maxlength')">
+                {{ 'center.validationMessages.name.max-length' | translate }}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{ 'center.registration-center-type' | translate }}</mat-label>
+              <mat-select formControlName="centerTypeCode">
+                  <mat-option value="Banking">Banking</mat-option>
+                  <mat-option value="Telecom">Telecom</mat-option>
+                  <mat-option value="Insurance">Insurance</mat-option>
+              </mat-select>
+              <mat-error *ngIf="primary.centerTypeCode.touched && primary.centerTypeCode.hasError('required')">
+                {{ 'center.validationMessages.centerTypeCode.required' | translate }}
+              </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field>
+              <input #keyboardRef #contactPerson (focus)="scrollPage(contactPerson, 'primary', 'contactPerson', 1)" formControlName="contactPerson" matInput placeholder="{{ 'center.contact-person' | translate }}">
+              <mat-error *ngIf="primary.contactPerson.touched && primary.contactPerson.hasError('required')">
+                {{ 'center.validationMessages.contactPerson.required' | translate }}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input 
+                #keyboardRef #contactPhone (focus)="scrollPage(contactPhone, 'primary', 'contactPhone', 2)"
+                formControlName="contactPhone"
+                 matInput
+                placeholder="{{ 'center.contact-number' | translate }}">
+              <mat-error *ngIf="primary.contactPhone.touched && primary.contactPhone.hasError('maxlength')">
+                {{ 'center.validationMessages.contactPhone.max-length' | translate }}
+              </mat-error>
+            </mat-form-field>
+            <br /><br />
+            <h3>{{ 'center.location-details' | translate }}</h3>
+
+            <mat-form-field>
+              <input #keyboardRef #addressline1 (focus)="scrollPage(addressline1, 'primary', 'addressLine1', 5)" formControlName="addressLine1" matInput placeholder="{{ 'center.address1' | translate }}">
+              <mat-error *ngIf="primary.addressLine1.touched && primary.addressLine1.hasError('required')">
+                {{ 'center.validationMessages.addressLine1.required' | translate }}
+              </mat-error>
+              <mat-error *ngIf="primary.addressLine1.touched && primary.addressLine1.hasError('maxlength')">
+                {{ 'center.validationMessages.addressLine1.max-length' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div> 
+        </mat-card-content>
+        <mat-card-actions class="action-buttons">
+          <button id="createButton" mat-raised-button *ngIf="!disableForms && data.length === 0"
+            (click)="submit()">{{ 'center.create' | translate }}</button>
+          <button id="createButton" mat-raised-button *ngIf="!disableForms && data.length !== 0"
+            (click)="submit()">{{ 'center.update' | translate }} </button>
+          <button id="createButton" mat-raised-button *ngIf="disableForms"
+            (click)="submit()">{{ 'center.edit' | translate }}</button>
+          <button mat-raised-button (click)="cancel()">{{ 'center.cancel' | translate }}</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

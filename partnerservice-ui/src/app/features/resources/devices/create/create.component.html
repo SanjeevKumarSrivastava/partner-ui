@@ -1,0 +1,51 @@
+<mat-spinner class="spinner-placer" *ngIf="showSpinner"></mat-spinner>
+<div *ngIf="(primaryData && !showSpinner)" id="flex-single-view">
+  <h3>{{ 'devices.header' | translate }}</h3>
+  <div class="flex-container">
+    <div class="flex-header">
+      <app-devices-header *ngIf="headerObject" [headerData]="headerObject"></app-devices-header>
+    </div>
+    <div class="flex-body">
+        <mat-card>
+            <mat-card-content class="forms-container">
+                <div class="primary-form" [formGroup]="primaryForm">
+                    <strong class="title">{{ 'devices.language' | translate }}</strong>
+                    <hr />
+                    <br /><br />
+
+                    <div class="mat-form1">
+                        <mat-form-field>
+                            <mat-label >{{ 'devices.name' | translate }}</mat-label>
+                            <mat-select formControlName="name">
+                                <mat-option value="Banking">Banking</mat-option>
+                                <mat-option value="Telecom">Telecom</mat-option>
+                                <mat-option value="Insurance">Insurance</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+
+
+                    <!-- <div class="mat-form1">
+                        <mat-form-field>
+                            <input matInput placeholder="{{ 'devices.name' | translate }}" formControlName="name">
+                        </mat-form-field>
+                    </div> -->
+             
+                </div>
+    
+                <mat-divider [vertical]="true" [inset]="true"></mat-divider>
+
+            </mat-card-content>
+            <mat-card-actions class="action-buttons">
+                  <button id="createButton" mat-raised-button *ngIf="!disableForms"
+                  (click)="updatePartnerPolicy()">{{ 'devices.update' | translate }} </button>
+
+                  <button id="createButton" mat-raised-button *ngIf="disableForms"  
+                  (click)="updatePartnerPolicy()">{{ 'devices.edit' | translate }}</button>
+
+                  <button mat-raised-button (click)="cancel()">{{ 'devices.cancel' | translate }}</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+  </div>
+</div>
